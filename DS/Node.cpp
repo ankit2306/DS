@@ -1,18 +1,20 @@
-class Node {
-public:
-	Node* next;
-	int data;
-
-	static Node* CreateNode(int data)
-	{
-		Node* newNode = new Node;
-		newNode->data = data;
-		newNode->next = nullptr;
-		return newNode;
-	}
-
-	void DeleteNode()
-	{
-		delete this;
-	}
+template <typename T>
+class Node
+{
+	public:
+		Node<T>* next;
+		T data;
+	
+		static Node<T>* CreateNode(T data)
+		{
+			Node<T>* newNode = new Node<T>();
+			newNode->data = data;
+			newNode->next = nullptr;
+			return newNode;
+		}
+	
+		void DeleteNode()
+		{
+			delete this;
+		}
 };

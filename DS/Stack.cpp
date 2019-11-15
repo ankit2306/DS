@@ -4,37 +4,22 @@ template <typename T>
 class Stack
 {
 private:
-	Node* head;
+	Node<T>* head;
 
 public:
 
-	static Stack* CreateNewStack(T data)
-	{
-		Stack* stack = new Stack();
-		stack->head = Node::CreateNode(data);
-		return stack;
-	}
-
 	Stack* Push(T data)
 	{
-		Stack* updatedStack = this;
-		if (!this)
-		{
-			updatedStack = CreateNewStack(data);
-		}
-		else
-		{
-			Node* oldHead = this->head;
-			this->head = Node::CreateNode(data);
-			this->head->next = oldHead;
-		}
+		Node* oldHead = this->head;
+		this->head = Node::CreateNode(data);
+		this->head->next = oldHead;
 		return this;
 	}
 
 	T Pop()
 	{
-		if (!this || !this->head)
-			return nullptr;
+		if (!this->head)
+			throw "Invalid Operation: Pop Operation on empty stack cannot be performed.";
 		else
 		{
 			T data = head->data;

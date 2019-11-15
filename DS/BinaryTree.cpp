@@ -2,10 +2,11 @@
 #include "Stack.cpp"
 #include <iostream>
 
+template <typename T>
 class BninaryTree
 {
 public:
-	Leaf* root;
+	Leaf<T>* root;
 
 	void RecInorderTraversal()
 	{
@@ -16,7 +17,7 @@ public:
 		}
 	}
 
-	void Rec_Inorder(Leaf* leaf)
+	void Rec_Inorder(Leaf<T>* leaf)
 	{
 		if (leaf == nullptr)
 			return;
@@ -27,25 +28,23 @@ public:
 
 	void Iterative_Inorder()
 	{
-		Stack<Leaf*>* stack = new Stack<Leaf*>();
-		Leaf *current, *left, *right;
+		Stack<Leaf<T>*> stack = Stack<Leaf<T>*>();
+		Leaf<T>* current, * left;
 		current = root;
-		while (!stack->IsEmpty() && current)
+		if (current)
 		{
-			left = current->left;
-			right = current->right;
-			if (left)
+			stack.Push(current);
+			while (!stack.IsEmpty() || current)
 			{
-				stack->Push(right);
-				stack->Push(current);
-				current = left;
-				continue;
-			}
-			else
-			{
-				Leaf* popped = stack->Pop();
-				std::cout << popped->data << " ";
-				stack->
+				while (current)
+				{
+					stack.Push(current);
+					current = current->left;
+				}
+
+				Leaf<T>* poppedData = stack.Pop();
+				std::cout << poppedData << " ";
+				current = current->right;
 			}
 		}
 	}

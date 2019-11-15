@@ -1,24 +1,18 @@
 #include "Node.cpp"
 #include <iostream>
 
+template <typename T>
 class LinkedList
 {
 public:
-	Node* head;
-
-	static LinkedList* CreateNewLList(int data)
-	{
-		LinkedList* LList = new LinkedList();
-		LList->head = Node::CreateNode(data);
-		return LList;
-	}
+	Node<T>* head;
 
 	void DeleteLList()
 	{
 		if (!this->head)
 			return;
 
-		Node* next = nullptr;
+		Node<T>* next = nullptr;
 		while (head)
 		{
 			next = this->head->next;
@@ -27,7 +21,7 @@ public:
 		}
 	}
 
-	void DeleteElementInLList(int data)
+	void DeleteElementInLList(T data)
 	{
 		if (!this->head)
 			return;
@@ -35,19 +29,19 @@ public:
 		// if data is the first element of list
 		if (this->head->data == data)
 		{
-			Node* next = this->head->next;
+			Node<T>* next = this->head->next;
 			this->head->DeleteNode();
 			this->head = next;
 		}
 		else
 		{
-			Node* next = this->head;
+			Node<T>* next = this->head;
 			// if data occurs anywhere else in the list
 			while (next && next->next)
 			{
 				if (next->next->data == data)
 				{
-					Node* nextElement = next->next->next;
+					Node<T>* nextElement = next->next->next;
 					next->next->DeleteNode();
 					next->next = nextElement;
 				}
@@ -56,45 +50,35 @@ public:
 		}
 	}
 
-	LinkedList* AppendElementInLList(int data)
+	LinkedList<T>* AppendElementInLList(T data)
 	{
-		LinkedList* updatedlist = this;
-		if (!this)
+		if (!this->head)
 		{
-			updatedlist = CreateNewLList(data);
+			this->head = Node<T>::CreateNode(data);
 		}
 		else
 		{
-			Node* head = this->head;
+			Node<T>* current = this->head;
 			while (head && head->next)
 			{
 				head = head->next;
 			}
-			head->next = Node::CreateNode(data);
+			head->next = Node<T>::CreateNode(data);
 		}
-
-		return updatedlist;
+		return this;
 	}
 
-	LinkedList* PrependElementInLList(int data)
+	LinkedList<T>* PrependElementInLList(T data)
 	{
-		LinkedList* updatedList = this;
-		if (!this)
-		{
-			updatedList = CreateNewLList(data);
-		}
-		else
-		{
-			Node* oldHead = this->head;
-			this->head = Node::CreateNode(data);
-			this->head->next = oldHead;
-		}
+		Node<T>* oldHead = this->head;
+		this->head = Node<T>::CreateNode(data);
+		this->head->next = oldHead;
 		return this;
 	}
 
 	void printLList()
 	{
-		Node* head = this->head;
+		Node<T>* head = this->head;
 		while (head)
 		{
 			std::cout << head->data << " ";
