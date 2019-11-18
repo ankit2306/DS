@@ -27,6 +27,7 @@ int main()
 
 	tree.RecInorderTraversal();
 	tree.Iterative_Inorder();
+	tree.Morris_Traversal();
 	
 	std::cin >> data;
 	return 0;

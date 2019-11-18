@@ -48,6 +48,42 @@ public:
 		}
 		std::cout << std::endl;
 	}
+
+	void Morris_Traversal()
+	{
+		if (!this->root)
+			return;
+
+		Leaf<T> *current, *pre;
+		current = this->root;
+
+		while (current)
+		{
+			if (current->left == nullptr)
+			{
+				std::cout << current->data << " ";
+				current = current->right;
+			}
+			else
+			{
+				pre = current->left;
+				while (pre->right && pre->right != current)
+					pre = pre->right;
+				if (!pre->right)
+				{
+					pre->right = current;
+					current = current->left;
+				}
+				else if (pre->right == current)
+				{
+					std::cout << current->data << " ";
+					pre->right = nullptr;
+					current = current->right;
+				}
+			}
+		}
+		std::cout << std::endl;
+	}
 };
 
 #endif
