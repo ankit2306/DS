@@ -1,3 +1,6 @@
+#ifndef __LINKED_LIST__
+#define __LINKED_LIST__
+
 #include "Node.cpp"
 #include <iostream>
 
@@ -87,3 +90,5 @@ public:
 		std::cout << std::endl;
 	}
 };
+
+#endif

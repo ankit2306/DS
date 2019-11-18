@@ -1,3 +1,6 @@
+#ifndef __STACK__
+#define __STACK__
+
 #include "Node.cpp"
 
 template <typename T>
@@ -10,28 +13,31 @@ public:
 
 	Stack* Push(T data)
 	{
-		Node* oldHead = this->head;
-		this->head = Node::CreateNode(data);
+		Node<T>* oldHead = this->head;
+		this->head = Node<T>::CreateNode(data);
 		this->head->next = oldHead;
 		return this;
 	}
 
 	T Pop()
 	{
+		T data = nullptr;
 		if (!this->head)
 			throw "Invalid Operation: Pop Operation on empty stack cannot be performed.";
 		else
 		{
-			T data = head->data;
-			Node* nextHead = this->head->next;
+			data = head->data;
+			Node<T>* nextHead = this->head->next;
 			head->DeleteNode();
 			head = nextHead;
 		}
-		return T;
+		return data;
 	}
 
 	bool IsEmpty()
 	{
-		return this->head ? true : false;
+		return this->head ? false : true;
 	}
 };
+
+#endif

@@ -24,8 +24,10 @@ int main()
 	tree.root->left->left = Leaf<int>::CreateLeaf(3);
 	tree.root->right = Leaf<int>::CreateLeaf(4);
 	tree.root->right->left = Leaf<int>::CreateLeaf(5);
-	tree.Iterative_Inorder();
+
 	tree.RecInorderTraversal();
+	tree.Iterative_Inorder();
+	
 	std::cin >> data;
 	return 0;
 }

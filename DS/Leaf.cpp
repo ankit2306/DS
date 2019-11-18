@@ -1,3 +1,6 @@
+#ifndef __Leaf__
+#define __Leaf__
+
 template <typename T>
 class Leaf
 {
@@ -20,3 +23,5 @@ public:
 		delete this;
 	}
 };
+
+#endif

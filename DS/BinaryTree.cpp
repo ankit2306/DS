@@ -1,3 +1,6 @@
+#ifndef __BINARY_TREE__
+#define __BINARY_TREE__
+
 #include "Leaf.cpp"
 #include "Stack.cpp"
 #include <iostream>
@@ -29,23 +32,22 @@ public:
 	void Iterative_Inorder()
 	{
 		Stack<Leaf<T>*> stack = Stack<Leaf<T>*>();
-		Leaf<T>* current, * left;
-		current = root;
-		if (current)
-		{
-			stack.Push(current);
-			while (!stack.IsEmpty() || current)
-			{
-				while (current)
-				{
-					stack.Push(current);
-					current = current->left;
-				}
+		Leaf<T>* current = this->root;
 
-				Leaf<T>* poppedData = stack.Pop();
-				std::cout << poppedData << " ";
-				current = current->right;
+		while (current || !stack.IsEmpty())
+		{
+			while (current)
+			{
+				stack.Push(current);
+				current = current->left;
 			}
+
+			Leaf<T>* poppedData = stack.Pop();
+			std::cout << poppedData->data << " ";
+			current = poppedData->right;
 		}
+		std::cout << std::endl;
 	}
 };
+
+#endif

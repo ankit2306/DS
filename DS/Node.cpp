@@ -1,3 +1,6 @@
+#ifndef __NODE__
+#define __NODE__
+
 template <typename T>
 class Node
 {
@@ -18,3 +21,5 @@ class Node
 			delete this;
 		}
 };
+
+#endif
