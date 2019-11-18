@@ -18,6 +18,14 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BinaryTree.cpp" />
+    <ClCompile Include="Leaf.cpp" />
+    <ClCompile Include="LinkedList.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Node.cpp" />
+    <ClCompile Include="Stack.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{4728E913-B081-4CAB-974F-77F09BBDFDEE}</ProjectGuid>
@@ -122,14 +130,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\..\New folder\BinaryTree.cpp" />
-    <ClCompile Include="..\..\..\New folder\Leaf.cpp" />
-    <ClCompile Include="..\..\..\New folder\LinkedList.cpp" />
-    <ClCompile Include="..\..\..\New folder\main.cpp" />
-    <ClCompile Include="..\..\..\New folder\Node.cpp" />
-    <ClCompile Include="..\..\..\New folder\Stack.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
