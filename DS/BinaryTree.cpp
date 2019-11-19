@@ -12,17 +12,17 @@ class BinaryTree
 {
 private:
 
-	static void Print_PostOrder_Given_Pre_AND_In_Order_Util(std::vector<T>::iterator pre, std::vector<T>::iterator in, int size)
+	static void Print_PostOrder_Given_Pre_AND_In_Order_Util(typename std::vector<T>::const_iterator pre, typename std::vector<T>::const_iterator in, int size)
 	{
-		std::vector<T>::iterator index_it = std::find(in, in + size - 1, *pre);
-		int index = std::distance(in, index_it);
+		typename std::vector<T>::const_iterator index_it = std::find(in, in + size - 1, *pre);
+		int index = distance(in, index_it);
 
 		if (index != 0)
 			Print_PostOrder_Given_Pre_AND_In_Order_Util(pre + 1, in, index);
 		if (index != size - 1)
 			Print_PostOrder_Given_Pre_AND_In_Order_Util(pre + index + 1, in + index + 1, size - index - 1);
 
-		std::cout << *index;
+		std::cout << *index_it << " ";
 	}
 
 public:
@@ -111,6 +111,8 @@ public:
 			throw "Invalid Operation: Empty array.";
 
 		Print_PostOrder_Given_Pre_AND_In_Order_Util(pre.begin(), in.begin(), pre.size());
+
+		std::cout << std::endl;
 	}
 };
 
