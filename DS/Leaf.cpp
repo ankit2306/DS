@@ -1,7 +1,7 @@
 #ifndef __Leaf__
 #define __Leaf__
 
-template <typename T>
+template <class T>
 class Leaf
 {
 public:

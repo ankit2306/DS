@@ -1,6 +1,7 @@
 #include <iostream>
 #include "LinkedList.cpp"
 #include "BinaryTree.cpp"
+#include <vector>
 using namespace std;
 
 int main()
@@ -18,7 +19,7 @@ int main()
 	newList.DeleteLList();
 	newList.printLList();
 	
-	BninaryTree<int> tree = BninaryTree<int>();
+	BinaryTree<int> tree = BinaryTree<int>();
 	tree.root = Leaf<int>::CreateLeaf(1);
 	tree.root->left = Leaf<int>::CreateLeaf(2);
 	tree.root->left->left = Leaf<int>::CreateLeaf(3);
@@ -29,6 +30,10 @@ int main()
 	tree.Iterative_Inorder();
 	tree.Morris_Traversal();
 	
+	std::vector<int> in = { 4, 2, 5, 1, 3, 6 };
+	std::vector<int> pre = { 1, 2, 4, 5, 3, 6 };
+	BinaryTree<int>::Print_PostOrder_Given_Pre_AND_In_Order(pre, in);
+
 	std::cin >> data;
 	return 0;
 }

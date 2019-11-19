@@ -4,7 +4,7 @@
 #include "Node.cpp"
 #include <iostream>
 
-template <typename T>
+template <class T>
 class LinkedList
 {
 public:
