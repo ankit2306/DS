@@ -12,9 +12,9 @@ class BinaryTree
 {
 private:
 
-	static void Print_PostOrder_Given_Pre_AND_In_Order_Util(typename std::vector<T>::const_iterator pre, typename std::vector<T>::const_iterator in, int size)
+	static void Print_PostOrder_Given_Pre_AND_In_Order_Util(class std::vector<T>::const_iterator pre, class std::vector<T>::const_iterator in, int size)
 	{
-		typename std::vector<T>::const_iterator index_it = std::find(in, in + size - 1, *pre);
+		class std::vector<T>::const_iterator index_it = std::find(in, in + size - 1, *pre);
 		int index = distance(in, index_it);
 
 		if (index != 0)
@@ -47,7 +47,7 @@ public:
 		Rec_Inorder(leaf->right);
 	}
 
-	void Iterative_Inorder()
+	void Iterative_Inorder() const
 	{
 		Stack<Leaf<T>*> stack = Stack<Leaf<T>*>();
 		Leaf<T>* current = this->root;
