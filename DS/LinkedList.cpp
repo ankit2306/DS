@@ -81,7 +81,10 @@ public:
 
 	void printLList()
 	{
+		std::cout << "Linked List: " << std::endl;
 		Node<T>* head = this->head;
+		if (!head)
+			std::cout << "Empty List !";
 		while (head)
 		{
 			std::cout << head->data << " ";

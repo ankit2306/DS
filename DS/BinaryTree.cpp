@@ -38,7 +38,7 @@ public:
 		}
 	}
 
-	void Rec_Inorder(Leaf<T>* leaf)
+	void Rec_Inorder(Leaf<T> *leaf)
 	{
 		if (leaf == nullptr)
 			return;
@@ -113,6 +113,45 @@ public:
 		Print_PostOrder_Given_Pre_AND_In_Order_Util(pre.begin(), in.begin(), pre.size());
 
 		std::cout << std::endl;
+	}
+
+	static std::vector<Leaf<T> *> Trees_Given_Inorder(const std::vector<T>& in, int start, int end)
+	{
+		std::vector<Leaf<T> *> trees;
+
+		if (start > end)
+		{
+			trees.push_back(nullptr);
+			return trees;
+		}
+		for (int i = start; i <= end; i++)
+		{
+			std::vector<Leaf<T> *> lTrees = Trees_Given_Inorder(in, start, i - 1);
+			std::vector<Leaf<T> *> rTrees = Trees_Given_Inorder(in, i + 1, end);
+
+			for (unsigned int j = 0; j < lTrees.size(); j++)
+			{
+				for (unsigned int k = 0; k < rTrees.size(); k++)
+				{
+					Leaf<T>* newLeaf = Leaf<T>::CreateLeaf(in[i]);
+
+					newLeaf->left = lTrees[j];
+					newLeaf->right = rTrees[k];
+
+					trees.push_back(newLeaf);
+				}
+			}
+		}
+		return trees;
+	}
+
+	static void Print_Pre_From_Root(const Leaf<T>* root)
+	{
+		if (root == nullptr)
+			return;
+		std::cout << root->data << " ";
+		Print_Pre_From_Root(root->left);
+		Print_Pre_From_Root(root->right);
 	}
 };
 
