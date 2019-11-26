@@ -41,13 +41,17 @@ int main()
 	std::cout << "Print_PostOrder_Given_Pre_AND_In_Order: " << std::endl;
 	BinaryTree<int>::Print_PostOrder_Given_Pre_AND_In_Order(pre, in);
 
-	std::vector<Leaf<int>*> trees = BinaryTree<int>::Trees_Given_Inorder(in, 0, in.size() - 1);
+	/*std::vector<Leaf<int>*> trees = BinaryTree<int>::Trees_Given_Inorder(in, 0, in.size() - 1);
 	std::cout << "Trees_Given_Inorder: " << std::endl;
 	for (const Leaf<int> *leaf : trees)
 	{
 		BinaryTree<int>::Print_Pre_From_Root(leaf);
 		std::cout << std::endl;
-	}
+	}*/
+
+	tree.Construct_Tree_Sum_Of_Inoder_Successors_And_Predecessors();
+	std::cout << "Construct_Tree_Sum_Of_Inoder_Successors_And_Predecessors: " << std::endl;
+	tree.RecInorderTraversal();
 
 	std::cin >> data;
 	return 0;

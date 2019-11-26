@@ -25,6 +25,26 @@ private:
 		std::cout << *index_it << " ";
 	}
 
+	void Inorder_Util(std::vector<T>& in, Leaf<T>* root)
+	{
+		if (root == nullptr)
+			return;
+		Inorder_Util(in, root->left);
+		in.push_back(root->data);
+		Inorder_Util(in, root->right);
+	}
+
+	void Inorder_Util(std::vector<T>& in, Leaf<T>* root, int *index)
+	{
+		if (root == nullptr)
+			return;
+		Inorder_Util(in, root->left, index);
+		root->data = in[*index - 1] + in[*index + 1];
+		++*index;
+		Inorder_Util(in, root->right, index);
+	}
+
+
 public:
 
 	Leaf<T>* root;
@@ -152,6 +172,28 @@ public:
 		std::cout << root->data << " ";
 		Print_Pre_From_Root(root->left);
 		Print_Pre_From_Root(root->right);
+	}
+
+	BinaryTree<T>& Construct_Tree_Sum_Of_Inoder_Successors_And_Predecessors()
+	{
+		if (!this->root)
+			return *this;
+
+		//construct vector for Inorder treaversal of the input tree
+		std::vector<T> in;
+		in.push_back(static_cast<T>(0));
+		Inorder_Util(in, this->root);
+
+		//add 0 to the beginning and end of inorder array
+		in.push_back(static_cast<T>(0));
+
+		//modifying tree
+		int index = 1;
+		Inorder_Util(in, this->root, &index);
+
+		in.clear();
+		std::vector<T>().swap(in);
+		return *this;
 	}
 };
 
