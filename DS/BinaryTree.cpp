@@ -44,6 +44,23 @@ private:
 		Inorder_Util(in, root->right, index);
 	}
 
+	static Leaf<T>* Rec_Search_Element(const Leaf<T>* location, Stack<Leaf<T>* >& stack , Leaf<T>* root)
+	{
+		if (root == nullptr)
+			return nullptr;
+
+		if (root == location)
+			return root;
+
+		stack.Push(root);
+
+		if(Rec_Search_Element(location, stack, root->left) == nullptr)
+			stack.Pop();
+
+		if(Rec_Search_Element(location, stack, root->right) == nullptr)
+			stack.Pop();
+	}
+
 
 public:
 
@@ -194,6 +211,39 @@ public:
 		in.clear();
 		std::vector<T>().swap(in);
 		return *this;
+	}
+
+	Leaf<T>* Inorder_Successor_OF_Node_In_BT(const Leaf<T>* node) const
+	{
+		if (this->root == nullptr || node == nullptr)
+			return nullptr;
+
+		if (node->right)
+		{
+			Leaf<T>* successor = node->right;
+			while (successor->left)
+				successor = successor->left;
+			return successor;
+		}
+		else
+		{
+			Stack<Leaf<T>* > *stack = new Stack<Leaf<T>* >();
+			Rec_Search_Element(node, *stack, this->root);
+
+			Leaf<T> *parent = nullptr, *child = nullptr;
+			child = stack->Pop();
+			
+			while (!stack->IsEmpty())
+			{
+				parent = stack->Pop();
+				if (parent->right == child)
+					break;
+				else {
+					child = parent;
+				}
+			}
+			return parent;
+		}
 	}
 };
 

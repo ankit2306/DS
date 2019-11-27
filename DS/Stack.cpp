@@ -26,10 +26,10 @@ public:
 			throw "Invalid Operation: Pop Operation on empty stack cannot be performed.";
 		else
 		{
-			data = head->data;
+			data = this->head->data;
 			Node<T>* nextHead = this->head->next;
-			head->DeleteNode();
-			head = nextHead;
+			this->head->DeleteNode();
+			this->head = nextHead;
 		}
 		return data;
 	}

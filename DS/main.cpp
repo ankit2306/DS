@@ -53,6 +53,12 @@ int main()
 	std::cout << "Construct_Tree_Sum_Of_Inoder_Successors_And_Predecessors: " << std::endl;
 	tree.RecInorderTraversal();
 
+	Leaf<int>* successor = tree.Inorder_Successor_OF_Node_In_BT(tree.root->left);
+	std::cout << "Inorder_Successor_OF_Node_In_BT: ";
+	if (successor)
+		std::cout << successor->data;
+	cout << std::endl;
+
 	std::cin >> data;
 	return 0;
 }
