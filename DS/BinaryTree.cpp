@@ -61,6 +61,64 @@ private:
 			stack.Pop();
 	}
 
+	static void Print_Nth_Inorder_Node_Util(Leaf<T>* root, int n)
+	{
+		static int count = 0;
+
+		if (!root)
+			return;
+
+		if (count <= n)
+		{
+			Print_Nth_Inorder_Node_Util(root->left, n);
+			count++;
+
+			if (count == n)
+			{
+				std::cout << root->data << std::endl;
+			}
+			Print_Nth_Inorder_Node_Util(root->right, n);
+		}
+	}
+
+	static void Print_Nth_Postorder_Node_Util(Leaf<T>* root, int n)
+	{
+		static int count = 0;
+
+		if (!root)
+			return;
+
+		if(count <= n)
+		{
+			Print_Nth_Postorder_Node_Util(root->left, n);
+
+			Print_Nth_Postorder_Node_Util(root->right, n);
+
+			count++;
+
+			if (count == n)
+			{
+				std::cout << root->data << std::endl;
+			}
+		}
+	}
+
+	static void Print_Given_Level_Util(Leaf<T>* root, int level)
+	{
+		if (!root)
+			return;
+
+		if (level == 1)
+		{
+			std::cout << root->data << std::endl;
+		}
+		else if (level > 1)
+		{
+			Print_Given_Level_Util(root->left, level - 1);
+			Print_Given_Level_Util(root->right, level - 1);
+		}
+	}
+
 
 public:
 
@@ -243,6 +301,34 @@ public:
 				}
 			}
 			return parent;
+		}
+	}
+
+	void Print_Nth_Inorder_Node(int n)
+	{
+		if (this->root)
+			Print_Nth_Inorder_Node_Util(this->root, n);
+	}
+
+	void Print_Nth_Postorder_Node(int n)
+	{
+		if (this->root)
+			Print_Nth_Postorder_Node_Util(this->root, n);
+	}
+
+	void Print_Given_Level(int level)
+	{
+		if (this->root)
+			Print_Given_Level_Util(this->root, level);
+	}
+	
+	void 
+
+	void Print_Level_Order_Rec()
+	{
+		if (this->root)
+		{
+			for
 		}
 	}
 };
