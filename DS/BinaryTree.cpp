@@ -44,21 +44,21 @@ private:
 		Inorder_Util(in, root->right, index);
 	}
 
-	static Leaf<T>* Rec_Search_Element(const Leaf<T>* location, Stack<Leaf<T>* >& stack , Leaf<T>* root)
+	static bool Rec_Search_Element(const Leaf<T>* location, Stack<Leaf<T>* >& stack , Leaf<T>* root)
 	{
 		if (root == nullptr)
-			return nullptr;
-
-		if (root == location)
-			return root;
+			return false;
 
 		stack.Push(root);
 
-		if(Rec_Search_Element(location, stack, root->left) == nullptr)
-			stack.Pop();
+		if (root == location)
+			return true;
 
-		if(Rec_Search_Element(location, stack, root->right) == nullptr)
-			stack.Pop();
+		if(Rec_Search_Element(location, stack, root->left) || Rec_Search_Element(location, stack, root->right))
+			return true;
+
+		stack.Pop();
+		return false;
 	}
 
 	static void Print_Nth_Inorder_Node_Util(Leaf<T>* root, int n)
