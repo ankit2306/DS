@@ -67,6 +67,4 @@ int main()
 
 	std::cin >> data;
 	return 0;
-
-	
 }
