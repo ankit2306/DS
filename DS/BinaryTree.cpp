@@ -119,6 +119,18 @@ private:
 		}
 	}
 
+	static int Get_Tree_Height_Util(Leaf<T>* root)
+	{
+		static int height = 0;
+
+		if(!root)
+			return 0;
+		
+		height++;
+		Get_Tree_Height_Util(root->left);
+		Get_Tree_Height_Util(root->right);
+	}
+
 
 public:
 
@@ -321,8 +333,12 @@ public:
 		if (this->root)
 			Print_Given_Level_Util(this->root, level);
 	}
-	
-	void 
+
+	int Get_Tree_Height()
+	{
+		if(this->root)
+			return Get_Tree_Height_Util(this->root);
+	}
 
 	void Print_Level_Order_Rec()
 	{
