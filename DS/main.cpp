@@ -65,6 +65,12 @@ int main()
 	std::cout << "Print_Nth_Postorder_Node: ";
 	tree.Print_Nth_Postorder_Node(1);
 
+	std::cout << "Print_Level_Order_Rec" << std::endl;
+	tree.Print_Level_Order_Rec();
+	
+	std::cout << "Print_Level_Order_Itr" << std::endl;
+	tree.Print_Level_Order_Itr();
+
 	std::cin >> data;
 	return 0;
 }

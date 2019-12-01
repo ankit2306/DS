@@ -1,6 +1,7 @@
 #ifndef __BINARY_TREE__
 #define __BINARY_TREE__
 
+#include "Queue.cpp"
 #include "Leaf.cpp"
 #include "Stack.cpp"
 #include <iostream>
@@ -44,7 +45,7 @@ private:
 		Inorder_Util(in, root->right, index);
 	}
 
-	static bool Rec_Search_Element(const Leaf<T>* location, Stack<Leaf<T>* >& stack , Leaf<T>* root)
+	static bool Rec_Search_Element(const Leaf<T>* location, Stack<Leaf<T>* >& stack, Leaf<T>* root)
 	{
 		if (root == nullptr)
 			return false;
@@ -110,7 +111,7 @@ private:
 
 		if (level == 1)
 		{
-			std::cout << root->data << std::endl;
+			std::cout << root->data << " ";
 		}
 		else if (level > 1)
 		{
@@ -126,9 +127,10 @@ private:
 		if(!root)
 			return 0;
 		
-		height++;
-		Get_Tree_Height_Util(root->left);
-		Get_Tree_Height_Util(root->right);
+		int lTree = 1 + Get_Tree_Height_Util(root->left);
+		int rTree = 1 + Get_Tree_Height_Util(root->right);
+
+		return lTree > rTree ? lTree : rTree;
 	}
 
 
@@ -342,10 +344,35 @@ public:
 
 	void Print_Level_Order_Rec()
 	{
+		int height = Get_Tree_Height();
 		if (this->root)
 		{
-			for
+			for(int i = 1; i <= height; i++)
+			{
+				Print_Given_Level(i);
+			}
 		}
+		std::cout << std::endl;
+	}
+
+	void Print_Level_Order_Itr()
+	{
+		if(!this->root)
+			return;
+		Queue<Leaf<T>*>* queue = new Queue<Leaf<T>*>(100);
+		queue->Enqueue(this->root);
+		
+		while(queue->Size())
+		{
+			Leaf<T>* node = queue->Dequeue();
+			std::cout << node->data << " ";
+			if(node->left)
+				queue->Enqueue(node->left);
+			if(node->right)
+				queue->Enqueue(node->right);
+		}
+		delete queue;
+		std::cout << std::endl;
 	}
 };
 
