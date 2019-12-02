@@ -374,6 +374,43 @@ public:
 		delete queue;
 		std::cout << std::endl;
 	}
+
+	void Print_Spiral_Order_Itr()
+	{
+		if (!this->root)
+			return;
+
+		Stack<Leaf<T>*>* st1 = new Stack<Leaf<T>*>();	//ltr
+		Stack<Leaf<T>*>* st2 = new Stack<Leaf<T>*>();	//rtl
+
+		st1->Push(this->root);
+		while (!st1->IsEmpty() || !st2->IsEmpty())
+		{
+			while (!st1->IsEmpty())
+			{
+				Leaf<T>* node = st1->Pop();
+				std::cout << node->data << " ";
+
+				if (node->left)
+					st2->Push(node->left);
+				if (node->right)
+					st2->Push(node->right);
+			}
+
+			while (!st2->IsEmpty())
+			{
+				Leaf<T>* node = st2->Pop();
+				std::cout << node->data << " ";
+
+				if (node->right)
+					st1->Push(node->right);
+				if (node->left)
+					st1->Push(node->left);
+			}
+		}
+		delete st1;
+		delete st2;
+	}
 };
 
 #endif
