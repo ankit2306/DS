@@ -71,8 +71,15 @@ int main()
 	std::cout << "Print_Level_Order_Itr" << std::endl;
 	tree.Print_Level_Order_Itr();
 
+	std::cout << "Print_Level_Order_Linewise_Itr" << std::endl;
+	tree.Print_Level_Order_Linewise_Itr();
+
 	std::cout << "Print_Spiral_Order_Itr" << std::endl;
 	tree.Print_Spiral_Order_Itr();
+
+	std::cout << "Reverse_Path" << std::endl;
+	tree.Reverse_Path(2);
+	tree.Print_Level_Order_Linewise_Itr();
 
 	std::cin >> data;
 	return 0;

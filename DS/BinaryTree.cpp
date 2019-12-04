@@ -8,6 +8,8 @@
 #include <vector>
 #include <algorithm>
 
+#define MAX_QUEUE_SIZE 100
+
 template <class T>
 class BinaryTree
 {
@@ -131,6 +133,24 @@ private:
 		int rTree = 1 + Get_Tree_Height_Util(root->right);
 
 		return lTree > rTree ? lTree : rTree;
+	}
+
+	static bool Find_Path_Util(Leaf<T>* root, T data, std::vector<Leaf<T>*>& path)
+	{
+		if (!root)
+			return false;
+
+		path.push_back(root);
+
+		if (root->data == data)
+			return true;
+
+		if (Find_Path_Util(root->left, data, path) || Find_Path_Util(root->right, data, path))
+			return true;
+		else
+			path.pop_back();
+
+		return false;
 	}
 
 
@@ -359,7 +379,7 @@ public:
 	{
 		if(!this->root)
 			return;
-		Queue<Leaf<T>*>* queue = new Queue<Leaf<T>*>(100);
+		Queue<Leaf<T>*>* queue = new Queue<Leaf<T>*>(MAX_QUEUE_SIZE);
 		queue->Enqueue(this->root);
 		
 		while(queue->Size())
@@ -410,7 +430,58 @@ public:
 		}
 		delete st1;
 		delete st2;
+		std::cout << std::endl;
 	}
+
+	void Print_Level_Order_Linewise_Itr()
+	{
+		if (!this->root)
+			return;
+		Queue<Leaf<T>*> *queue = new Queue<Leaf<T>*>(MAX_QUEUE_SIZE);
+		queue->Enqueue(this->root);
+		while (queue->Size() > 0)
+		{
+			int count = queue->Size();
+			while (count--)
+			{
+				Leaf<T>* node = queue->Dequeue();
+				std::cout << node->data << " ";
+				if (node->left)
+					queue->Enqueue(node->left);
+				if (node->right)
+					queue->Enqueue(node->right);
+			}
+			std::cout << std::endl;
+		}
+		delete queue;
+	}
+
+	std::vector<Leaf<T>*>& Find_Path(T data)
+	{
+		std::vector<Leaf<T>*> *path = nullptr;
+		if (this->root)
+		{
+			path = new std::vector<Leaf<T>*>();
+			if (Find_Path_Util(this->root, data, *path))
+				return *path;
+		}
+		else{
+			return *path;
+		}
+	}
+
+	void Reverse_Path(T data)
+	{
+		std::vector<Leaf<T>*> path = Find_Path(data);
+		for (int i = 0; i < path.size() / 2; i++)
+		{
+			T data = path[i]->data;
+			path[i]->data = path[path.size() - i - 1]->data;
+			path[path.size() - i - 1]->data = data;
+		}
+	}
+
+	void 
 };
 
-#endif
+#endif`
