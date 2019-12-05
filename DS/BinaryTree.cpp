@@ -481,7 +481,6 @@ public:
 		}
 	}
 
-	void 
 };
 
 #endif`
