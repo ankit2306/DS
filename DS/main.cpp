@@ -2,6 +2,7 @@
 #include "LinkedList.cpp"
 #include "BinaryTree.cpp"
 #include <vector>
+#include "DynamicProgramming.cpp"
 using namespace std;
 
 int main()
@@ -80,6 +81,9 @@ int main()
 	std::cout << "Reverse_Path" << std::endl;
 	tree.Reverse_Path(2);
 	tree.Print_Level_Order_Linewise_Itr();
+
+	std::cout << "Nth Ugly number: " << std::endl;
+	std::cout << DynamicProgramming::UglyNumbers(4);
 
 	std::cin >> data;
 	return 0;
