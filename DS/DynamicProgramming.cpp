@@ -1,13 +1,14 @@
 #ifndef __Dynamic_Programming__
 #define __Dynamic_Programming__
 
+#define MAX 100
+
 class DynamicProgramming
 {
 public:
 	static unsigned int UglyNumbers(int n)
 	{
-		unsigned int* ugly = new unsigned int[n];
-
+		unsigned int* ugly = new unsigned int[n] {0};
 		ugly[0] = 1;
 		int i2 = 0, i3 = 0, i5 = 0;
 		for (int index = 1; index < n; index++)
@@ -33,9 +34,42 @@ public:
 	static unsigned int min_3(unsigned int a, unsigned int b, unsigned int c)
 	{
 		if (a > b)
-			return  b > c ? c : b;
+			return  c > b ? b : c;
 		else
-			return b < c ? a : b;
+			return a < c ? a : c;
+	}
+
+	static int Fib_Using_Matrix_Expansion(int n)
+	{
+		static int f[MAX] = { 0 };
+		if (n == 0)
+			return 0;
+		if (n == 1 || n == 2)
+			return f[n] = 1;
+		if (f[n])
+			return f[n];
+		int k = n & 1 ? (n + 1) / 2 : n / 2;
+
+		f[n] = n & 1 ? Fib_Using_Matrix_Expansion(k) * Fib_Using_Matrix_Expansion(k) + Fib_Using_Matrix_Expansion(k - 1) * Fib_Using_Matrix_Expansion(k - 1) : (2 * Fib_Using_Matrix_Expansion(k - 1) + Fib_Using_Matrix_Expansion(k)) * Fib_Using_Matrix_Expansion(k);
+
+		return f[n];
+	}
+
+	static unsigned int Catlan(int n)
+	{
+		static unsigned int f[MAX] = { 0 };
+		f[0] = 1;
+
+		if (n < 0)
+			return 0;
+
+		for (int i = 1; i <= n; i++)
+		{
+			for (int j = 0; j < i; j++)
+				f[i] += f[j] * f[i - j - 1];
+		}
+
+		return f[n];
 	}
 };
 

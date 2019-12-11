@@ -83,7 +83,13 @@ int main()
 	tree.Print_Level_Order_Linewise_Itr();
 
 	std::cout << "Nth Ugly number: " << std::endl;
-	std::cout << DynamicProgramming::UglyNumbers(4);
+	std::cout << DynamicProgramming::UglyNumbers(150) << std::endl;
+
+	std::cout << "Fib_Using_Matrix_Expansion : " << std::endl;
+	std::cout << DynamicProgramming::Fib_Using_Matrix_Expansion(12) << std::endl;
+
+	std::cout << "Catlan Number : " << std::endl;
+	std::cout << DynamicProgramming::Catlan(9) << std::endl;
 
 	std::cin >> data;
 	return 0;
