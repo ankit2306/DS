@@ -71,6 +71,25 @@ public:
 
 		return f[n];
 	}
+
+	static int min_2(int a, int b)
+	{
+		return a < b ? a : b;
+	}
+
+	static unsigned int Binomial_Coeff(int n, int k)
+	{
+		unsigned int* bin{ new unsigned int[n + 1]{} };		// list initialization with dynamic memory allocation.	// all array members are assigned value 0.
+
+		bin[0] = 1;
+		for(int i = 1; i <= n; i++)
+			for (int j = min_2(i, k); j > 0; j--)
+			{
+				bin[j] += bin[j - 1];
+			}
+
+		return bin[k];
+	}
 };
 
 #endif
