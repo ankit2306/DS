@@ -94,6 +94,14 @@ int main()
 	std::cout << "Binomial Coefficient : " << std::endl;
 	std::cout << DynamicProgramming::Binomial_Coeff(4, 2) << std::endl;
 
+	int gold[MAX][MAX] = { {1, 3, 1, 5},
+		{2, 2, 4, 1},
+		{5, 0, 2, 3},
+		{0, 6, 1, 2}
+	};
+	int m = 4, n = 4;
+	cout << "Get Max Gold :" << DynamicProgramming::Get_Max_Gold(gold, m, n) << std::endl;
+
 	std::cin >> data;
 	return 0;
 }

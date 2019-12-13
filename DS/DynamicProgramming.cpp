@@ -2,7 +2,7 @@
 #define __Dynamic_Programming__
 
 #define MAX 100
-
+#include <iostream>
 class DynamicProgramming
 {
 public:
@@ -77,6 +77,14 @@ public:
 		return a < b ? a : b;
 	}
 
+	static int max_3(int a, int b, int c)
+	{
+		if (a > b)
+			return a > c ? a : c;
+		else
+			return b > c ? b : c;
+	}
+
 	static unsigned int Binomial_Coeff(int n, int k)
 	{
 		unsigned int* bin{ new unsigned int[n + 1]{} };		// list initialization with dynamic memory allocation.	// all array members are assigned value 0.
@@ -87,8 +95,62 @@ public:
 			{
 				bin[j] += bin[j - 1];
 			}
+		int bin_coeff = bin[k];
+		delete[] bin;
+		return bin_coeff;
+	}
 
-		return bin[k];
+	static unsigned long long int Permutation_Coeff(int n, int k)
+	{
+		unsigned long long int permutaion_n_k = 1;
+
+		for (int i = n; i > n - k; i++)
+			permutaion_n_k *= i;
+
+		return permutaion_n_k;
+	}
+
+	static int Get_Max_Gold(int gold[][MAX], int m, int n)
+	{
+		int** maxgold{ new int*[m] {} };
+		for (int i = 0; i < m; i++)
+			maxgold[i] = new int[n] {};
+
+		for (int col = n - 1; col >= 0; col--)
+		{
+			for (int row = 0; row < m; row++)
+			{
+				int right_up = (col == n - 1 || row == 0) ? 0 : maxgold[row - 1][col + 1];
+
+				int right = (col == n - 1) ? 0 : maxgold[row][col + 1];
+
+				int right_down = (col == n - 1 || row == m - 1) ? 0 : maxgold[row + 1][col + 1];
+
+				maxgold[row][col] = gold[row][col] + max_3(right_up, right, right_down);
+			}
+		}
+
+		/*for (int col = 0; col < m; col++)
+		{
+			for (int row = 0; row < n; row++)
+			{
+				std::cout << maxgold[col][row] << " ";
+			}
+			std::cout << std::endl;
+		}*/
+
+		int gold_collected = 0;
+		for (int i = 0; i < m; i++)
+		{
+			if (maxgold[i][0] > gold_collected)
+				gold_collected = maxgold[i][0];
+		}
+
+		for (int i = 0; i < m; i++)
+			delete[] maxgold[i];
+		delete[] maxgold;
+
+		return gold_collected;
 	}
 };
 
