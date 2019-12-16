@@ -102,6 +102,9 @@ int main()
 	int m = 4, n = 4;
 	cout << "Get Max Gold :" << DynamicProgramming::Get_Max_Gold(gold, m, n) << std::endl;
 
+	int S[] = { 1,2,3 };
+	std::cout << "Coin Change: " << DynamicProgramming::Coin_Change(S, 3, 3) << std::endl;
+
 	std::cin >> data;
 	return 0;
 }

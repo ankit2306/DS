@@ -132,10 +132,7 @@ public:
 
 		/*for (int col = 0; col < m; col++)
 		{
-			for (int row = 0; row < n; row++)
-			{
-				std::cout << maxgold[col][row] << " ";
-			}
+			
 			std::cout << std::endl;
 		}*/
 
@@ -152,6 +149,37 @@ public:
 
 		return gold_collected;
 	}
+
+	static int Coin_Change(int S[], int size, int sum)
+	{
+		int* change{ new int[sum + 1]{1}};
+		for (int i = 0; i < size; i++)
+		{
+			for (int j = S[i]; j <= sum; j++)
+			{
+				change[j] += change[j - S[i]];
+			}
+		}
+		int n = change[sum];
+		delete[] change;
+		return n;
+	}
+
+	int Count_Friends_Pairings(int n)
+	{
+		int a = 1, b = 2, c = 0;
+		if (n <= 2) {
+			return n;
+		}
+		for (int i = 3; i <= n; i++) {
+			c = b + (i - 1) * a;
+			a = b;
+			b = c;
+		}
+		return c;
+	}
+
+
 };
 
 #endif
