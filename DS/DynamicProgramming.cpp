@@ -130,12 +130,6 @@ public:
 			}
 		}
 
-		/*for (int col = 0; col < m; col++)
-		{
-			
-			std::cout << std::endl;
-		}*/
-
 		int gold_collected = 0;
 		for (int i = 0; i < m; i++)
 		{
@@ -165,7 +159,7 @@ public:
 		return n;
 	}
 
-	int Count_Friends_Pairings(int n)
+	static int Count_Friends_Pairings(int n)
 	{
 		int a = 1, b = 2, c = 0;
 		if (n <= 2) {
@@ -179,7 +173,32 @@ public:
 		return c;
 	}
 
+	static bool Subset_Sum(int S[], int size, int sum)
+	{
+		bool is_subset_present = false;
+		bool** dp_table{ new bool* [size + 1]{} };
+		for (int i = 0; i <= size; i++)
+			dp_table[i] = new bool[sum + 1]{true};
 
+		for (int i = 1; i <= size; i++)
+		{
+			for (int j = 1; j <= sum; j++)
+			{
+				if (j >= S[i - 1])
+					dp_table[i][j] = dp_table[i - 1][j] || dp_table[i -1][j - S[i - 1]];
+				else
+					dp_table[i][j] = dp_table[i - 1][j];
+			}
+		}
+		if (dp_table[size][sum])
+			is_subset_present = true;
+		
+		for (int i = 0; i <= size; i++)
+			delete[] dp_table[i];
+		delete[] dp_table;
+
+		return is_subset_present;
+	}
 };
 
 #endif

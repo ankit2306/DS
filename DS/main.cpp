@@ -105,6 +105,9 @@ int main()
 	int S[] = { 1,2,3 };
 	std::cout << "Coin Change: " << DynamicProgramming::Coin_Change(S, 3, 3) << std::endl;
 
+	std::cout << "Subset Sum: " << std::endl;
+	std::cout << DynamicProgramming::Subset_Sum(S, 3, 5);
+
 	std::cin >> data;
 	return 0;
 }
