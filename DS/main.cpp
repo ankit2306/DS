@@ -106,8 +106,13 @@ int main()
 	std::cout << "Coin Change: " << DynamicProgramming::Coin_Change(S, 3, 3) << std::endl;
 
 	std::cout << "Subset Sum: " << std::endl;
-	std::cout << DynamicProgramming::Subset_Sum(S, 3, 5);
+	std::cout << DynamicProgramming::Subset_Sum(S, 3, 5) << std::endl;
 
+	int Set[] = { 12, 4, 6, 18, 24, 36 };
+	std::cout << "Largest_Divisible_Pair: " << DynamicProgramming::Largest_Divisible_Pair(Set, sizeof(Set)/sizeof(int)) << std::endl;
+
+	std::cout << "Print_All_Subsets_With_Given_Sum: ";
+	DynamicProgramming::Print_All_Subsets_With_Given_Sum(Set, sizeof(Set) / sizeof(int), 36);
 	std::cin >> data;
 	return 0;
 }

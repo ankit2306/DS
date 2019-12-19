@@ -3,8 +3,27 @@
 
 #define MAX 100
 #include <iostream>
+#include <algorithm>
+#include <vector>
 class DynamicProgramming
 {
+private:
+	static void Display(const std::vector<int>& subsets)
+	{
+		for (int i = 0; i < subsets.Size(); i++)
+		{
+			std::cout << subsets[i] << " ";
+		}
+	}
+	static void Print_All_Subsets_With_Given_Sum_Rec(int S[], int** dp, int size, int sum, std::vector<int>& subsets)
+	{
+		if (sum == 0 || size == 1)
+			display(subsets);
+
+		//exclude element from subset
+		Print_All_Subsets_With_Given_Sum_Rec(S, dp, size - 1, )
+	}
+
 public:
 	static unsigned int UglyNumbers(int n)
 	{
@@ -198,6 +217,65 @@ public:
 		delete[] dp_table;
 
 		return is_subset_present;
+	}
+
+	static int Largest_Divisible_Pair(int S[], int size)
+	{
+		std::sort(S, S + size, [](const int& a, const int& b) -> bool {return a < b; });	   //used a predicate
+		/*for (int i = 0; i < size; i++)
+			std::cout << S[i] << " ";*/
+
+		int* ldp{ new int[size] {} };
+		ldp[size - 1] = 1;
+
+		for (int i = size - 2; i >= 0; i--)
+		{
+			int max_multiple = 0;
+			for (int j = i + 1 ; j < size; j++)
+			{
+				if (S[j] % S[i]) {
+					if (ldp[j] > max_multiple)
+						max_multiple = ldp[j];
+				}
+				ldp[i] = max_multiple + 1;
+			}
+		}
+		int max_subarray = *std::max_element(ldp, ldp + size);
+		delete[] ldp;
+		return max_subarray;
+	}
+
+	static void Print_All_Subsets_With_Given_Sum(int S[], int size, int sum)
+	{
+		bool** dp_table{ new bool* [size + 1]{} };
+		for (int i = 0; i <= size; i++)
+			dp_table[i] = new bool[sum + 1]{ true };
+
+		for (int i = 1; i <= size; i++)
+		{
+			for (int j = 1; j <= sum; j++)
+			{
+				if (j >= S[i - 1])
+				{
+					dp_table[i][j] = dp_table[i - 1][j] || dp_table[i - 1][j - S[i - 1]];
+				}
+				else
+					dp_table[i][j] = dp_table[i - 1][j];
+			}
+		}
+
+		for (int i = 0; i <= size; i++)
+		{
+			for (int j = 0; j <= sum; j++)
+			{
+				std::cout << dp_table[i][j] << " ";
+			}
+			std::cout << std::endl;
+		}
+
+		//start backtracing sum path
+		std::vector<int> Subsets;
+		Print_All_Subsets_With_Given_Sum_Rec(S, dp_table, size, sum, subsets);
 	}
 };
 
