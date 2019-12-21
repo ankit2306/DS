@@ -111,8 +111,9 @@ int main()
 	int Set[] = { 12, 4, 6, 18, 24, 36 };
 	std::cout << "Largest_Divisible_Pair: " << DynamicProgramming::Largest_Divisible_Pair(Set, sizeof(Set)/sizeof(int)) << std::endl;
 
+	int arr[] = {1, 2, 3, 4, 5}; 
 	std::cout << "Print_All_Subsets_With_Given_Sum: ";
-	DynamicProgramming::Print_All_Subsets_With_Given_Sum(Set, sizeof(Set) / sizeof(int), 36);
+	DynamicProgramming::Print_All_Subsets_With_Given_Sum(arr, sizeof(arr) / sizeof(int), 10);
 	std::cin >> data;
 	return 0;
 }

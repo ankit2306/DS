@@ -10,18 +10,39 @@ class DynamicProgramming
 private:
 	static void Display(const std::vector<int>& subsets)
 	{
-		for (int i = 0; i < subsets.Size(); i++)
+		for (int i = 0; i < subsets.size(); i++)
 		{
 			std::cout << subsets[i] << " ";
 		}
+		std::cout << std::endl;
 	}
-	static void Print_All_Subsets_With_Given_Sum_Rec(int S[], int** dp, int size, int sum, std::vector<int>& subsets)
+
+	static void Print_All_Subsets_With_Given_Sum_Rec(int S[], bool** dp, int size, int sum, std::vector<int>& subsets)
 	{
-		if (sum == 0 || size == 1)
-			display(subsets);
+		if(size == 1 && sum!=0 && dp[1][sum])
+		{
+			subsets.push_back(S[size - 1]);
+			Display(subsets);
+			subsets.pop_back();
+			return;
+		}
+		if (sum == 0 && size == 0)
+		{
+			Display(subsets);
+			return;
+		}
 
 		//exclude element from subset
-		Print_All_Subsets_With_Given_Sum_Rec(S, dp, size - 1, )
+		if(dp[size - 1][sum])
+			Print_All_Subsets_With_Given_Sum_Rec(S, dp, size - 1, sum, subsets);
+
+		//include element in subset
+		if(sum >= S[size - 1] && dp[size - 1][sum - S[size - 1]])
+		{
+			subsets.push_back(S[size - 1]);
+			Print_All_Subsets_With_Given_Sum_Rec(S, dp, size - 1, sum - S[size - 1], subsets);
+			subsets.pop_back();
+		}
 	}
 
 public:
@@ -264,18 +285,18 @@ public:
 			}
 		}
 
-		for (int i = 0; i <= size; i++)
-		{
-			for (int j = 0; j <= sum; j++)
-			{
-				std::cout << dp_table[i][j] << " ";
-			}
-			std::cout << std::endl;
-		}
+		// for (int i = 0; i <= size; i++)
+		// {
+		// 	for (int j = 0; j <= sum; j++)
+		// 	{
+		// 		std::cout << dp_table[i][j] << " ";
+		// 	}
+		// 	std::cout << std::endl;
+		// }
 
 		//start backtracing sum path
 		std::vector<int> Subsets;
-		Print_All_Subsets_With_Given_Sum_Rec(S, dp_table, size, sum, subsets);
+		Print_All_Subsets_With_Given_Sum_Rec(S, dp_table, size, sum, Subsets);
 	}
 };
 
