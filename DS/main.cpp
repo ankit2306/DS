@@ -114,6 +114,9 @@ int main()
 	int arr[] = {1, 2, 3, 4, 5}; 
 	std::cout << "Print_All_Subsets_With_Given_Sum: ";
 	DynamicProgramming::Print_All_Subsets_With_Given_Sum(arr, sizeof(arr) / sizeof(int), 10);
+
+	std::cout << "Compute nCr % p: ";
+	std::cout << DynamicProgramming::nCrModP(10, 2, 13) << std::endl;
 	std::cin >> data;
 	return 0;
 }

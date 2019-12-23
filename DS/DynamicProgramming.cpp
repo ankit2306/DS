@@ -298,6 +298,21 @@ public:
 		std::vector<int> Subsets;
 		Print_All_Subsets_With_Given_Sum_Rec(S, dp_table, size, sum, Subsets);
 	}
+
+	static int nCrModP(int n, int r, int p)
+	{
+		int *arr{new int[r + 1]{1}};
+		for(int i = 1; i <= n; i++)
+		{
+			for(int j = min_2(i, r); j > 0; j--)
+			{
+				arr[j] = (arr[j] + arr[j - 1]) % p;
+			}
+		}
+		int ncR_modP = arr[r];
+		delete[] arr;
+		return ncR_modP;
+	}
 };
 
 #endif
