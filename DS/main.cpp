@@ -117,6 +117,9 @@ int main()
 
 	std::cout << "Compute nCr % p: ";
 	std::cout << DynamicProgramming::nCrModP(10, 2, 13) << std::endl;
+
+	int rods[] = { 1, 5, 8, 9, 10, 17, 17, 20 };
+	std::cout << "Cut_Rod: " << DynamicProgramming::Cut_Rod(rods, sizeof(rods) / sizeof(int)) << std::endl;
 	std::cin >> data;
 	return 0;
 }
