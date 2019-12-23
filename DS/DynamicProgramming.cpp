@@ -45,6 +45,11 @@ private:
 		}
 	}
 
+	static int max_2(int a, int b)
+	{
+		return a > b ? a : b;
+	}
+
 public:
 	static unsigned int UglyNumbers(int n)
 	{
@@ -297,6 +302,24 @@ public:
 		//start backtracing sum path
 		std::vector<int> Subsets;
 		Print_All_Subsets_With_Given_Sum_Rec(S, dp_table, size, sum, Subsets);
+	}
+
+	static int Cut_Rod(int Price[], int size)
+	{
+		int* dp{ new int[size + 1] {} };
+
+		for (int i = 1; i <= size; i++)
+		{
+			int max_cost = 0;
+			for (int j = 0; j < i; j++)
+			{
+				max_cost = max_2(max_cost, Price[j] + dp[i - j - 1]);
+			}
+			dp[i] = max_cost;
+		}
+		int max_cost = dp[size];
+		delete[] dp;
+		return max_cost;
 	}
 };
 
