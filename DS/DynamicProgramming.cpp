@@ -50,6 +50,11 @@ private:
 		return a > b ? a : b;
 	}
 
+	static unsigned int abs_diff(int a, int b)
+	{
+		return a > b ? a - b : b - a;
+	}
+
 public:
 	static unsigned int UglyNumbers(int n)
 	{
@@ -335,6 +340,22 @@ public:
 		int max_cost = dp[size];
 		delete[] dp;
 		return max_cost;
+	}
+
+	static std::vector<int> Longest_Snake_Sequence(int** maze, int m, int n)
+	{
+		int** longestSnake{ new int* [m] {} };
+		for (int i = 0; i < m; i++)
+			longestSnake[i] = new int [n] {};
+
+		for (int i = m - 1; i >= 0; i--)
+		{
+			for (int j = n - 1; j >= 0; j--)
+			{
+				if(abs_diff(maze[i][j], maze[i]))
+				longestSnake[i][j] = max_2(max, )
+			}
+		}
 	}
 };
 
