@@ -120,6 +120,14 @@ int main()
 
 	int rods[] = { 1, 5, 8, 9, 10, 17, 17, 20 };
 	std::cout << "Cut_Rod: " << DynamicProgramming::Cut_Rod(rods, sizeof(rods) / sizeof(int)) << std::endl;
+
+	int** mat = new int* [4] {
+		new int[4] {9, 6, 5, 2},
+		new int[4] {8, 7, 6, 5},
+		new int[4] {7, 3, 1, 6},
+		new int[4] {1, 1, 1, 7},
+	};
+	DynamicProgramming::Longest_Snake_Sequence(mat, 4, 4);
 	std::cin >> data;
 	return 0;
 }

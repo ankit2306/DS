@@ -342,19 +342,59 @@ public:
 		return max_cost;
 	}
 
-	static std::vector<int> Longest_Snake_Sequence(int** maze, int m, int n)
+	static void Longest_Snake_Sequence(int** maze, int m, int n)
 	{
 		int** longestSnake{ new int* [m] {} };
 		for (int i = 0; i < m; i++)
 			longestSnake[i] = new int [n] {};
 
+		std::pair<int, int> max_pair { 0, 0 };
+		int max_length = 0;
 		for (int i = m - 1; i >= 0; i--)
 		{
 			for (int j = n - 1; j >= 0; j--)
 			{
-				if(abs_diff(maze[i][j], maze[i]))
-				longestSnake[i][j] = max_2(max, )
+				int right =  j != n - 1 && abs_diff(maze[i][j], maze[i][j + 1]) != 1 ? longestSnake[i][j + 1] + 1 : 1;
+
+				int down = i != m - 1 && abs_diff(maze[i][j], maze[i + 1][j]) != 1 ? longestSnake[i + 1][j] + 1 : 1;
+
+				longestSnake[i][j] = max_2(right, down);
+				if (max_length < longestSnake[i][j]) {
+					max_pair.first = i;
+					max_pair.second = j;
+					max_length = longestSnake[i][j];
+				}
+
 			}
+		}
+		while (max_length)
+		{
+			std::cout << maze[max_pair.first][max_pair.second] << " ";
+			if (max_length == 1)
+				break;
+
+			bool down = max_pair.first == m - 1 ? false : true;
+			bool right = max_pair.second == n - 1 ? false : true;
+
+			if (down && right)
+			{
+				if (longestSnake[max_pair.first + 1][max_pair.second] > longestSnake[max_pair.first][max_pair.second + 1])
+					max_pair.first = max_pair.first + 1;
+				else
+					max_pair.second = max_pair.second + 1;
+			}
+			else if (down)
+			{
+				max_pair.first = max_pair.first + 1;
+			}
+			else if (right)
+			{
+				max_pair.second = max_pair.second + 1;
+			}
+			else
+				throw "Error.";
+
+			max_length--;
 		}
 	}
 };
