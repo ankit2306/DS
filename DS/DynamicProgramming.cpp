@@ -55,6 +55,19 @@ private:
 		return a > b ? a - b : b - a;
 	}
 
+	template <typename T>
+	static void print_2d(T** arr, int m, int n)
+	{
+		for(int i = 0; i < m; i++)
+		{
+			for(int j = 0; j < n; j++)
+			{
+				std::cout << arr[i][j] << " ";
+			}
+			std::cout << std::endl;
+		}
+	}
+
 public:
 	static unsigned int UglyNumbers(int n)
 	{
@@ -354,9 +367,9 @@ public:
 		{
 			for (int j = n - 1; j >= 0; j--)
 			{
-				int right =  j != n - 1 && abs_diff(maze[i][j], maze[i][j + 1]) != 1 ? longestSnake[i][j + 1] + 1 : 1;
+				int right =  j != n - 1 && abs_diff(maze[i][j], maze[i][j + 1]) == 1 ? longestSnake[i][j + 1] + 1 : 1;
 
-				int down = i != m - 1 && abs_diff(maze[i][j], maze[i + 1][j]) != 1 ? longestSnake[i + 1][j] + 1 : 1;
+				int down = i != m - 1 && abs_diff(maze[i][j], maze[i + 1][j]) == 1 ? longestSnake[i + 1][j] + 1 : 1;
 
 				longestSnake[i][j] = max_2(right, down);
 				if (max_length < longestSnake[i][j]) {
@@ -367,6 +380,7 @@ public:
 
 			}
 		}
+		print_2d(longestSnake ,4, 4);
 		while (max_length)
 		{
 			std::cout << maze[max_pair.first][max_pair.second] << " ";
@@ -378,16 +392,19 @@ public:
 
 			if (down && right)
 			{
-				if (longestSnake[max_pair.first + 1][max_pair.second] > longestSnake[max_pair.first][max_pair.second + 1])
-					max_pair.first = max_pair.first + 1;
-				else
+				if (abs_diff(maze[max_pair.first][max_pair.second], maze[max_pair.first + 1][max_pair.second])== 1)
+				{
+					if(longestSnake[max_pair.first + 1][max_pair.second] > longestSnake[max_pair.first][max_pair.second + 1]);
+						max_pair.first = max_pair.first + 1;
+				}
+				else if (abs_diff(maze[max_pair.first][max_pair.second], maze[max_pair.first][max_pair.second + 1])== 1)
 					max_pair.second = max_pair.second + 1;
 			}
-			else if (down)
+			else if (down && abs_diff(maze[max_pair.first][max_pair.second], maze[max_pair.first + 1][max_pair.second])== 1)
 			{
 				max_pair.first = max_pair.first + 1;
 			}
-			else if (right)
+			else if (right && abs_diff(maze[max_pair.first][max_pair.second], maze[max_pair.first][max_pair.second + 1]) == 1)
 			{
 				max_pair.second = max_pair.second + 1;
 			}
