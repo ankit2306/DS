@@ -127,7 +127,10 @@ int main()
 		new int[4] {7, 3, 1, 6},
 		new int[4] {1, 1, 1, 7},
 	};
-	DynamicProgramming::Longest_Snake_Sequence(mat, 4, 4);
+	std::vector<int> path;
+	DynamicProgramming::Longest_Snake_Sequence(mat, 4, 4, path);
+	for(int p : path)
+		std:: cout << p << ' ';
 	std::cin >> data;
 	return 0;
 }

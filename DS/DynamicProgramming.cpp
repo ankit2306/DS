@@ -68,6 +68,63 @@ private:
 		}
 	}
 
+	static void Print_Longest_Snake(int** maze, int** snake, int m, int n, int x, int y, int length, std::vector<int>& path)
+	{
+		if (length == 1)
+		{
+			path.push_back(maze[x][y]);
+			return;
+		}
+
+		if (x != m - 1 && y != n - 1)
+		{
+			if (abs_diff(maze[x][y], maze[x + 1][y]) == 1 && abs_diff(maze[x][y], maze[x][y + 1]) == 1)
+			{
+				if (snake[x][y] - snake[x + 1][y] == 1 && snake[x][y] - snake[x][y + 1] == 1)
+				{
+					path.push_back(maze[x][y]);
+					Print_Longest_Snake(maze, snake, m, n, x + 1, y, length - 1, path);
+				}
+				else if (snake[x + 1][y] > snake[x][y + 1])
+				{
+					path.push_back(maze[x][y]);
+					Print_Longest_Snake(maze, snake, m, n, x + 1, y, length - 1, path);
+				}
+				else
+				{
+					path.push_back(maze[x][y]);
+					Print_Longest_Snake(maze, snake, m, n, x, y + 1, length - 1, path);
+				}
+			}
+			else if (abs_diff(maze[x][y], maze[x + 1][y]) == 1)
+			{
+				path.push_back(maze[x][y]);
+				Print_Longest_Snake(maze, snake, m, n, x + 1, y, length - 1, path);
+			}
+			else
+			{
+				path.push_back(maze[x][y]);
+				Print_Longest_Snake(maze, snake, m, n, x, y + 1, length - 1, path);
+			}
+		}
+		else if (x == m - 1 && y != n - 1)
+		{
+			if (abs_diff(maze[x][y], maze[x][y + 1]) == 1)
+			{
+				path.push_back(maze[x][y]);
+				Print_Longest_Snake(maze, snake, m, n, x, y + 1, length - 1, path);
+			}
+		}
+		else if (x != m - 1 && y == n - 1)
+		{
+			if ((abs_diff(maze[x][y], maze[x + 1][y]) == 1))
+			{
+				path.push_back(maze[x][y]);
+				Print_Longest_Snake(maze, snake, m, n, x + 1, y, length - 1, path);
+			}
+		}
+	}
+
 public:
 	static unsigned int UglyNumbers(int n)
 	{
@@ -355,7 +412,7 @@ public:
 		return max_cost;
 	}
 
-	static void Longest_Snake_Sequence(int** maze, int m, int n)
+	static void Longest_Snake_Sequence(int** maze, int m, int n , std::vector<int>& path)
 	{
 		int** longestSnake{ new int* [m] {} };
 		for (int i = 0; i < m; i++)
@@ -381,38 +438,7 @@ public:
 			}
 		}
 		print_2d(longestSnake ,4, 4);
-		while (max_length)
-		{
-			std::cout << maze[max_pair.first][max_pair.second] << " ";
-			if (max_length == 1)
-				break;
-
-			bool down = max_pair.first == m - 1 ? false : true;
-			bool right = max_pair.second == n - 1 ? false : true;
-
-			if (down && right)
-			{
-				if (abs_diff(maze[max_pair.first][max_pair.second], maze[max_pair.first + 1][max_pair.second])== 1)
-				{
-					if(longestSnake[max_pair.first + 1][max_pair.second] > longestSnake[max_pair.first][max_pair.second + 1]);
-						max_pair.first = max_pair.first + 1;
-				}
-				else if (abs_diff(maze[max_pair.first][max_pair.second], maze[max_pair.first][max_pair.second + 1])== 1)
-					max_pair.second = max_pair.second + 1;
-			}
-			else if (down && abs_diff(maze[max_pair.first][max_pair.second], maze[max_pair.first + 1][max_pair.second])== 1)
-			{
-				max_pair.first = max_pair.first + 1;
-			}
-			else if (right && abs_diff(maze[max_pair.first][max_pair.second], maze[max_pair.first][max_pair.second + 1]) == 1)
-			{
-				max_pair.second = max_pair.second + 1;
-			}
-			else
-				throw "Error.";
-
-			max_length--;
-		}
+		Print_Longest_Snake(maze, longestSnake, m, n, max_pair.first, max_pair.second, max_length, path);
 	}
 };
 
