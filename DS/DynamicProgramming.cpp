@@ -5,6 +5,7 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
+#include "Utility.h"
 class DynamicProgramming
 {
 private:
@@ -42,29 +43,6 @@ private:
 			subsets.push_back(S[size - 1]);
 			Print_All_Subsets_With_Given_Sum_Rec(S, dp, size - 1, sum - S[size - 1], subsets);
 			subsets.pop_back();
-		}
-	}
-
-	static int max_2(int a, int b)
-	{
-		return a > b ? a : b;
-	}
-
-	static unsigned int abs_diff(int a, int b)
-	{
-		return a > b ? a - b : b - a;
-	}
-
-	template <typename T>
-	static void print_2d(T** arr, int m, int n)
-	{
-		for(int i = 0; i < m; i++)
-		{
-			for(int j = 0; j < n; j++)
-			{
-				std::cout << arr[i][j] << " ";
-			}
-			std::cout << std::endl;
 		}
 	}
 
@@ -151,14 +129,6 @@ public:
 		return ugly[n - 1];
 	}
 
-	static unsigned int min_3(unsigned int a, unsigned int b, unsigned int c)
-	{
-		if (a > b)
-			return  c > b ? b : c;
-		else
-			return a < c ? a : c;
-	}
-
 	static int Fib_Using_Matrix_Expansion(int n)
 	{
 		static int f[MAX] = { 0 };
@@ -190,19 +160,6 @@ public:
 		}
 
 		return f[n];
-	}
-
-	static int min_2(int a, int b)
-	{
-		return a < b ? a : b;
-	}
-
-	static int max_3(int a, int b, int c)
-	{
-		if (a > b)
-			return a > c ? a : c;
-		else
-			return b > c ? b : c;
 	}
 
 	static unsigned int Binomial_Coeff(int n, int k)
@@ -437,9 +394,22 @@ public:
 
 			}
 		}
-		print_2d(longestSnake ,4, 4);
+		//print_2d(longestSnake ,4, 4);
 		Print_Longest_Snake(maze, longestSnake, m, n, max_pair.first, max_pair.second, max_length, path);
 	}
+
+	static void Print_Newman_Conway(const int n)
+	{
+		int* arr = new int[n + 1] {};
+		arr[1] = arr[2] = 1;
+		for (int i = 3; i <= n; i++)
+		{
+			arr[i] = arr[arr[i - 1]] + arr[i - arr[i - 1]];
+			std::cout << arr[i] << " ";
+		}
+	}
+
+
 };
 
 #endif

@@ -132,5 +132,6 @@ int main()
 	for(int p : path)
 		std:: cout << p << ' ';
 	std::cin >> data;
+	std::cout << std::endl;
 	return 0;
 }
