@@ -409,7 +409,28 @@ public:
 		}
 	}
 
+	static int Get_Special_Sequence(int m, int n)
+	{
+		int** arr = new int* [n + 1]{};
+		for (int i = 0; i<=n; i++)
+		{
+			arr[i] = new int[m + 1]{};
+		}
+		arr[0][0] = 1;
+		for (int i = 1; i <= n; i++)
+		{
+			for (int j = 1; j <= max_2(m, pow(2, i)); j++)
+			{
+				arr[i][j] = arr[i - 1][j / 2] + arr[i][j - 1]; 
+			}
+		}
 
+		int special_sequences = arr[n][m];
+		for (int i = 0; i <= n; i++)
+			delete[] arr[i];
+		delete[] arr;
+		return special_sequences;
+	}
 };
 
 #endif

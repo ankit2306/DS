@@ -131,6 +131,9 @@ int main()
 	DynamicProgramming::Longest_Snake_Sequence(mat, 4, 4, path);
 	for(int p : path)
 		std:: cout << p << ' ';
+
+	std::cout << "Special Sequence: " << DynamicProgramming::Get_Special_Sequence(9, 4) << std::endl;
+
 	std::cin >> data;
 	std::cout << std::endl;
 	return 0;
