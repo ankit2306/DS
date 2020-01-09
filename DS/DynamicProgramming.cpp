@@ -419,7 +419,7 @@ public:
 		arr[0][0] = 1;
 		for (int i = 1; i <= n; i++)
 		{
-			for (int j = 1; j <= max_2(m, pow(2, i)); j++)
+			for (int j = 1; j <= m; j++)
 			{
 				arr[i][j] = arr[i - 1][j / 2] + arr[i][j - 1]; 
 			}
@@ -430,6 +430,29 @@ public:
 			delete[] arr[i];
 		delete[] arr;
 		return special_sequences;
+	}
+
+	static int Longest_Common_Subsequence(const char first[], const char second[], const int first_size, int second_size)
+	{
+		int** dp = new int* [first_size + 1] {};
+		for (int i = 0; i <= first_size; i++)
+			dp[i] = new int[second_size + 1] {0};
+		
+		for (int i = 1; i <= first_size; i++)
+		{
+			for (int j = 1; j <= second_size; j++)
+			{
+				if (first[i - 1] == second[j - 1])
+					dp[i][j] = 1 + dp[i - 1][j - 1];
+				else
+					dp[i][j] = max_2(dp[i - 1][j], dp[i][j - 1]);
+			}
+		}
+		int lcs = dp[first_size][second_size];
+		for (int i = 0; i <= first_size; i++)
+			delete[] dp[i];
+		delete[] dp;
+		return lcs;
 	}
 };
 

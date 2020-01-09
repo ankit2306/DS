@@ -131,9 +131,11 @@ int main()
 	DynamicProgramming::Longest_Snake_Sequence(mat, 4, 4, path);
 	for(int p : path)
 		std:: cout << p << ' ';
-
+	std::cout << std::endl;
 	std::cout << "Special Sequence: " << DynamicProgramming::Get_Special_Sequence(9, 4) << std::endl;
-
+	const char str1[] = "ABCDGH";
+	const char str2[] = "AEDFHR";
+	std::cout << "Longest Common Subsequence: " << DynamicProgramming::Longest_Common_Subsequence(str1, str2, sizeof(str1) / sizeof(char) - 1, sizeof(str2) / sizeof(char) - 1);
 	std::cin >> data;
 	std::cout << std::endl;
 	return 0;
