@@ -135,7 +135,10 @@ int main()
 	std::cout << "Special Sequence: " << DynamicProgramming::Get_Special_Sequence(9, 4) << std::endl;
 	const char str1[] = "ABCDGH";
 	const char str2[] = "AEDFHR";
-	std::cout << "Longest Common Subsequence: " << DynamicProgramming::Longest_Common_Subsequence(str1, str2, sizeof(str1) / sizeof(char) - 1, sizeof(str2) / sizeof(char) - 1);
+	std::cout << "Longest Common Subsequence: " << DynamicProgramming::Longest_Common_Subsequence(str1, str2, sizeof(str1) / sizeof(char) - 1, sizeof(str2) / sizeof(char) - 1) << std::endl;
+
+	int arrLIS[] = { 10, 22, 9, 33, 21, 50, 41, 60 };
+	std::cout << "Longest Increasing Subsequence: " << DynamicProgramming::Longest_Increasing_Subsequence(arrLIS, sizeof(arrLIS) / sizeof(arrLIS[0])) << std::endl;
 	std::cin >> data;
 	std::cout << std::endl;
 	return 0;

@@ -454,6 +454,23 @@ public:
 		delete[] dp;
 		return lcs;
 	}
-};
 
+	static int Longest_Increasing_Subsequence(const int* arr, int length)
+	{
+		int* dp{ new int[length] {1} };
+		for (int i = 1; i < length; i++)
+		{
+			for (int j = 0; j < i; j++)
+			{
+				if (arr[j] < arr[i] && dp[j] + 1 > dp[i])
+					dp[i] = dp[j] + 1;
+			}
+		}
+		int max_value = 0;
+		for (int i = 0; i < length; i++)
+			if (dp[i] > max_value)
+				max_value = dp[i];
+		return max_value;
+	}
+};
 #endif
