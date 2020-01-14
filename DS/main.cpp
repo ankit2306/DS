@@ -149,6 +149,8 @@ int main()
 	int arr_abs_diff_1[] = { 2,0,4,1,5 };
 	std::cout << "Longest Subseq. with abs-diff 1: " << DynamicProgramming::Longest_Subsequence_With_Diff_1(arr_abs_diff_1, sizeof(arr_abs_diff_1) / sizeof(arr_abs_diff_1[0])) << std::endl;
 
+	std::vector<pair<int, int>> pairs = { std::make_pair(5, 24), {15, 25}, {27, 40}, {50, 60} };
+	std::cout << "Length of chain of pairs: " << DynamicProgramming::Longest_Chain_Pair(pairs) << std::endl;
 	std::cin >> data;
 	std::cout << std::endl;
 	return 0;

@@ -541,5 +541,28 @@ public:
 
 		return count;
 	}
+
+	static int Longest_Chain_Pair(const std::vector<std::pair<int, int>>& pairs)
+	{
+		int* chain_length = new int[pairs.size()] {1};
+
+		for (int i = 1; i < pairs.size(); i++)
+		{
+			for (int j = 0; j < i; j++)
+			{
+				if (pairs[j].second < pairs[i].first && chain_length[j] + 1 > chain_length[i])
+					chain_length[i] = chain_length[j] + 1;
+			}
+		}
+
+		int count = 0;
+		for (int i = 0; i < pairs.size(); i++)
+			if (chain_length[i] > count)
+				count = chain_length[i];
+
+		delete[] chain_length;
+
+		return count;
+	}
 };
 #endif
