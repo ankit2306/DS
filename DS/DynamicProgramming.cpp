@@ -505,5 +505,96 @@ public:
 
 		return max_sum;
 	}
+	static int Product_Subsequence(const std::vector<int>& arr, int k)
+	{
+		int** dp = new int* [k + 1]{};
+		for (int i = 0; i <= k; i++)
+			dp[i] = new int[arr.size() + 1]{};
+
+		for (int i = 1; i <= k; i++)
+		{
+			for (int j = 1; j <= arr.size(); j++)
+			{
+				dp[i][j] = dp[i][j - 1];
+				if (arr[j - 1] <= i && arr[j - 1] > 0)
+					dp[i][j] += dp[i / arr[j - 1]][j - 1] + 1;
+			}										    
+		}
+		int count = dp[k][arr.size()];
+		
+		for (int i = 0; i <= k; i++)
+			delete[] dp[i];
+		delete[] dp;
+
+		return count;
+	}
+
+	static int Max_Sum_Wo_3_Consec(int arr[], int n)
+	{
+		int* sum = new int[n] {};
+		if (n == 0)
+			return 0;
+		if (n >= 1)
+			sum[0] = arr[0];
+		if (n >= 2)
+			sum[1] = arr[0] + arr[1];
+		if (n > 2)
+			sum[2] = max_3(sum[1], sum[0] + arr[2], arr[2] + arr[1]);
+		for (int i = 3; i < n; i++)
+			sum[i] = max_3(sum[i - 1], sum[i - 2] + arr[i], sum[i - 3] + arr[i - 1] + arr[i]);
+
+		int max_sum = sum[n - 1];
+		
+		delete[] sum;
+
+		return max_sum;
+	}
+
+	static int Longest_Subsequence_With_Diff_1(int arr[], int n)
+	{
+		int* dp = new int[n] {1};
+		for (int i = 1; i < n; i++)
+		{
+			int j, max_so_far = -1;
+			for (j = i - 1; j >= 0; j--)
+			{
+				if (arr[i] - arr[j] == 1 || arr[j] - arr[i] == 1)
+					if (max_so_far < dp[j])
+						max_so_far = dp[j];
+			}
+			if (max_so_far == -1)
+				dp[i] = 1;
+			else
+				dp[i] = max_so_far + 1;
+		}
+		int count = dp[n - 1];
+
+		delete[] dp;
+
+		return count;
+	}
+
+	static int Longest_Chain_Pair(const std::vector<std::pair<int, int>>& pairs)
+	{
+		int* chain_length = new int[pairs.size()] {1};
+
+		for (int i = 1; i < pairs.size(); i++)
+		{
+			for (int j = 0; j < i; j++)
+			{
+				if (pairs[j].second < pairs[i].first && chain_length[j] + 1 > chain_length[i])
+					chain_length[i] = chain_length[j] + 1;
+			}
+		}
+
+		int count = 0;
+		for (int i = 0; i < pairs.size(); i++)
+			if (chain_length[i] > count)
+				count = chain_length[i];
+
+		delete[] chain_length;
+
+		return count;
+	}
 };
 #endif

@@ -140,8 +140,22 @@ int main()
 	int arrLIS[] = { 10, 22, 9, 33, 21, 50, 41, 60 };
 	std::cout << "Longest Increasing Subsequence: " << DynamicProgramming::Longest_Increasing_Subsequence(arrLIS, sizeof(arrLIS) / sizeof(arrLIS[0])) << std::endl;
 
+<<<<<<< HEAD
 	int arrBS[] = { 1, 15, 51, 45, 33, 100, 12, 18, 9 };  
 	std::cout << "Longest Bitonic Sequence: " << DynamicProgramming::Longest_Bitonic_Sequence(arrBS, sizeof(arrBS) / sizeof(arrBS[0]));
+=======
+	std::vector<int> set = {1, 2, 3, 4};
+	std::cout << "Product Subsequence: " << DynamicProgramming::Product_Subsequence(set, 10) << std::endl;
+
+	int arr_max_Wo_3_consec[] = { 2,0,4,1,5 };
+	std::cout << "Max sum subseq. without three consecutive elemets in an array: " << DynamicProgramming::Max_Sum_Wo_3_Consec(arr_max_Wo_3_consec, sizeof(arr_max_Wo_3_consec) / sizeof(arr_max_Wo_3_consec[0])) << std::endl;
+
+	int arr_abs_diff_1[] = { 2,0,4,1,5 };
+	std::cout << "Longest Subseq. with abs-diff 1: " << DynamicProgramming::Longest_Subsequence_With_Diff_1(arr_abs_diff_1, sizeof(arr_abs_diff_1) / sizeof(arr_abs_diff_1[0])) << std::endl;
+
+	std::vector<pair<int, int>> pairs = { std::make_pair(5, 24), {15, 25}, {27, 40}, {50, 60} };
+	std::cout << "Length of chain of pairs: " << DynamicProgramming::Longest_Chain_Pair(pairs) << std::endl;
+>>>>>>> a86dae9c50b59b49694b0b760db26591b7516dd0
 	std::cin >> data;
 	std::cout << std::endl;
 	return 0;
