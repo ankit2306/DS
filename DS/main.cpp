@@ -139,6 +139,9 @@ int main()
 
 	int arrLIS[] = { 10, 22, 9, 33, 21, 50, 41, 60 };
 	std::cout << "Longest Increasing Subsequence: " << DynamicProgramming::Longest_Increasing_Subsequence(arrLIS, sizeof(arrLIS) / sizeof(arrLIS[0])) << std::endl;
+
+	int arrBS[] = { 1, 15, 51, 45, 33, 100, 12, 18, 9 };  
+	std::cout << "Longest Bitonic Sequence: " << DynamicProgramming::Longest_Bitonic_Sequence(arrBS, sizeof(arrBS) / sizeof(arrBS[0]));
 	std::cin >> data;
 	std::cout << std::endl;
 	return 0;

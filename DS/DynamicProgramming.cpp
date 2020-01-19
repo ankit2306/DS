@@ -470,7 +470,40 @@ public:
 		for (int i = 0; i < length; i++)
 			if (dp[i] > max_value)
 				max_value = dp[i];
+		
+		delete[] dp;
 		return max_value;
+	}
+
+	static int Longest_Bitonic_Sequence(int arr[], int n)
+	{
+		int* msibs { new int[n] {} };
+		int* msdbs { new int[n] {} };
+		for(int i = 0; i < n; i++)
+		{
+			msibs[i] = arr[i];
+			msdbs[i] = arr[i];
+		}
+
+		for(int i = 1; i < n ; i++)
+			for(int j = 0; j < i; j++)
+				if(arr[j] < arr[i] && msibs[i] < msibs[j] + arr[i])
+					msibs[i] = msibs[j] + arr[i];
+
+		for(int i = n - 2; i >= 0 ; i--)
+			for(int j = n - 1; j > i; j--)
+				if(arr[j] < arr[i] && msdbs[i] < msdbs[j] + arr[i])
+					msdbs[i] = msdbs[j] + arr[i];
+
+		int max_sum = 0;
+		for(int i = 0; i < n; i++)
+			if(msibs[i] + msdbs[i] - arr[i] > max_sum)
+				max_sum = msibs[i] + msdbs[i] - arr[i];
+		
+		delete[] msibs;
+		delete[] msdbs;
+
+		return max_sum;
 	}
 };
 #endif
