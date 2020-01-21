@@ -596,5 +596,27 @@ public:
 
 		return count;
 	}
+
+	static int Maximum_Sum_Of_Pairs_With_Diff_K(std::vector<int>& arr, int k)
+	{
+		std::sort(arr.begin(), arr.end(), [](int a, int b) -> bool { return a > b; });
+
+		for (int x : arr)
+			std::cout << x << " ";
+
+		int sum = 0;
+		for (int i = 0; i + 1 < arr.size();)
+		{
+			if (arr[i] - arr[i + 1] < k)
+			{
+				sum += arr[i] + arr[i + 1];
+				i += 2;
+			}
+			else
+				i++;
+		}
+		return sum;
+	}
 };
 #endif
+	
