@@ -5,11 +5,11 @@ class Sorting {
 private:
 
 public:
-	static void SelectionSort(std::vector<T> arr);
+	static void SelectionSort(std::vector<T>& arr);
 };
 
 template<class T>
-void Sorting<T>::SelectionSort(std::vector<T> arr)
+void Sorting<T>::SelectionSort(std::vector<T>& arr)
 {
 	int min_index;
 	for (int i = 0; i < arr.size() - 1; i++)
