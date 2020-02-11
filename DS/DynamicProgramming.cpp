@@ -601,8 +601,8 @@ public:
 	{
 		std::sort(arr.begin(), arr.end(), [](int a, int b) -> bool { return a > b; });
 
-		for (int x : arr)
-			std::cout << x << " ";
+		/*for (int x : arr)
+			std::cout << x << " ";*/
 
 		int sum = 0;
 		for (int i = 0; i + 1 < arr.size();)

@@ -3,6 +3,7 @@
 #include "BinaryTree.cpp"
 #include <vector>
 #include "DynamicProgramming.cpp"
+#include "Sorting.cpp"
 using namespace std;
 
 int main()
@@ -155,7 +156,13 @@ int main()
 	std::cout << "Length of chain of pairs: " << DynamicProgramming::Longest_Chain_Pair(pairs) << std::endl;
 
 	std::vector<int> arr_max_pair = { 3, 5, 10, 15, 17, 12, 9 };
-	std:cout << "max sum of pairs: " << DynamicProgramming::Maximum_Sum_Of_Pairs_With_Diff_K(arr_max_pair, 4) << std::endl;
+	std::cout << "max sum of pairs: " << DynamicProgramming::Maximum_Sum_Of_Pairs_With_Diff_K(arr_max_pair, 4) << std::endl;
+
+	Sorting<int>::SelectionSort(arr_max_pair);
+	for (int i = 0; i < arr_max_pair.size(); i++)
+		std::cout << arr_max_pair[i] << " ";
+	std::cout << std::endl;
+
 	std::cin >> data;
 	std::cout << std::endl;
 	return 0;
