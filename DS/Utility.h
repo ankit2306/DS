@@ -46,4 +46,12 @@ static int max_3(int a, int b, int c)
 		return b > c ? b : c;
 }
 
+template <class T>
+static void swap_2(T* a, T* b)
+{
+	*a += *b;
+	*b = *a - *b;
+	*a -= *b;
+}
+
 #endif // !__UTILITY_H__
