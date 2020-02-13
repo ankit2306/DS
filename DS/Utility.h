@@ -47,11 +47,11 @@ static int max_3(int a, int b, int c)
 }
 
 template <class T>
-static void swap_2(T* a, T* b)
+static void swap_arr(std::vector<T>& arr, int index1, int index2)
 {
-	*a += *b;
-	*b = *a - *b;
-	*a -= *b;
+	arr[index1] += arr[index2];
+	arr[index2] = arr[index1] - arr[index2];
+	arr[index1] -= arr[index2];
 }
 
 #endif // !__UTILITY_H__
