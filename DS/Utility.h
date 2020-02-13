@@ -2,6 +2,8 @@
 #ifndef __UTILITY_H__
 #define __UTILITY_H__
 
+#include<iostream>
+
 static int max_2(int a, int b)
 {
 	return a > b ? a : b;

@@ -158,7 +158,8 @@ int main()
 	std::vector<int> arr_max_pair = { 3, 5, 10, 15, 17, 12, 9 };
 	std::cout << "max sum of pairs: " << DynamicProgramming::Maximum_Sum_Of_Pairs_With_Diff_K(arr_max_pair, 4) << std::endl;
 
-	Sorting<int>::SelectionSort(arr_max_pair, [](const int& first, const int& second) -> bool { return first < second; });
+	/*Sorting<int>::SelectionSort(arr_max_pair, [](const int& first, const int& second) -> bool { return first < second; });*/
+	Sorting<int>::RecBubbleSort(arr_max_pair, [](const int& first, const int& second) -> bool { return first < second; });
 	for (int i = 0; i < arr_max_pair.size(); i++)
 		std::cout << arr_max_pair[i] << " ";
 	std::cout << std::endl;
