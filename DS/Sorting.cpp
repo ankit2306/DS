@@ -13,6 +13,10 @@ public:
 	static void BubbleSort(std::vector<T>& arr, Func _compare);
 	template <class Func>
 	static void RecBubbleSort(std::vector<T>& arr, Func _compare);
+	template <class Func>
+	static void InsertionSort(std::vector<T>& arr, Func _compare);
+	template <class Func>
+	static void MergeSort(std::vector<T>& arr, Func _compare);
 };
 
 template<class T>
@@ -73,4 +77,31 @@ void Sorting<T>::RecBubbleSort(std::vector<T>& arr, Func _compare)
 		if (_compare(arr[i + 1], arr[i]))
 			swap_arr(arr, i, i + 1);
 	RecBubbleSortUtil(arr, rec + 1, _compare);
+}
+
+template<class T>
+template<class Func>
+void Sorting<T>::InsertionSort(std::vector<T>& arr, Func _compare)
+{
+	for (int i = 1; i < arr.size(); i++)
+	{
+		if (_compare(arr[i], arr[i - 1]))
+		{
+			int j = i - 1;
+			T key = arr[i];
+			while (j > 0 && arr[j - 1] > key)
+			{
+				arr[j] = arr[j - 1];
+				j--;
+			}																    
+			arr[j] = key;
+		}
+	}
+}
+
+template<class T>
+template<class Func>
+void Sorting<T>::MergeSort(std::vector<T>& arr, Func _compare)
+{
+	for(int)
 }
