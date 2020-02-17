@@ -160,7 +160,8 @@ int main()
 
 	/*Sorting<int>::SelectionSort(arr_max_pair, [](const int& first, const int& second) -> bool { return first < second; });*/
 	/*Sorting<int>::RecBubbleSort(arr_max_pair, [](const int& first, const int& second) -> bool { return first < second; });*/
-	Sorting<int>::InsertionSort(arr_max_pair, [](const int& first, const int& second) -> bool { return first < second; });
+	/*Sorting<int>::InsertionSort(arr_max_pair, [](const int& first, const int& second) -> bool { return first < second; });*/
+	Sorting<int>::MergeSort(arr_max_pair, 0, arr_max_pair.size() - 1, [](const int& first, const int& second) -> bool { return first < second; });
 	for (int i = 0; i < arr_max_pair.size(); i++)
 		std::cout << arr_max_pair[i] << " ";
 	std::cout << std::endl;
