@@ -6,7 +6,7 @@
         {
             "label": "build",
             "type": "shell",
-            "command": "g++ -g main.cpp",
+            "command": "g++ -g ./DS/main.cpp -o ./DS/a.out",
             "problemMatcher": "$gcc"
         }
     ]
